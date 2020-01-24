@@ -5,7 +5,8 @@ const SocketServer = require('ws').Server;
 const PORT = process.env.PORT || 3000;
 
 const server = express()
-  .use(express.static(__dirname))
+  .use((req,res) => {res.sendFile(path.join(__dirname,'index.html'))})
+  //.use(express.static(__dirname))
   .listen(PORT, () => console.log(`Listening on ${PORT}`))
 
 const wss = new SocketServer({server});
